@@ -1,6 +1,9 @@
 package web.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -11,12 +14,16 @@ public class User {
     private Long id;
 
     @Column(name = "name")
+    @Pattern(regexp = "[A-Za-z]{2,15}", message = "Name should be between 2 and 15 latin characters")
     private String firstName;
 
     @Column(name = "last_name")
+    @Pattern(regexp = "[A-Za-z]{2,15}", message = "Name should be between 2 and 15 latin characters")
     private String lastName;
 
     @Column(name = "age")
+    @Min(value = 0, message = "Age should be >= 0")
+    @Max(value = 127, message = "Age should be < 128")
     private int age;
 
     public User() {}
