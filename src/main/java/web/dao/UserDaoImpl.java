@@ -13,8 +13,8 @@ import java.util.List;
 @Transactional
 public class UserDaoImpl implements UserDao {
 
-    //        @PersistenceContext
-//    private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
     private static final List<User> list = new ArrayList<>();
 
     static {
@@ -26,8 +26,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getUsers() {
-        return list;
-        //return entityManager.createQuery("select u from User u",User.class).getResultList();
+       // return list;
+        return entityManager.createQuery("select u from User u",User.class).getResultList();
     }
 }
 
